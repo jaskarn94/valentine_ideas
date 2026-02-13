@@ -1,0 +1,390 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Nunito:wght@500;700&display=swap");
+
+:root {
+  --bg-a: #ff7b72;
+  --bg-b: #f65f8a;
+  --bg-c: #fdb96f;
+  --panel: #ffffff;
+  --text: #1f1f27;
+  --muted: #5d6070;
+  --line: rgba(24, 24, 32, 0.12);
+  --like: #23b77b;
+  --nope: #fd5f72;
+  --pill: rgba(255, 255, 255, 0.25);
+  --shadow: 0 18px 40px rgba(32, 6, 22, 0.26);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100dvh;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(100% 120% at 0% 100%, rgba(255, 255, 255, 0.45), transparent 70%),
+    linear-gradient(150deg, var(--bg-a), var(--bg-b) 48%, var(--bg-c));
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+}
+
+.app-shell {
+  width: min(430px, 96vw);
+  min-height: min(810px, 95dvh);
+  border-radius: 2rem;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), #fff);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+.app-top {
+  text-align: center;
+  padding: 1rem 1rem 0.6rem;
+}
+
+.top-pill {
+  width: fit-content;
+  margin: 0 auto 0.55rem;
+  background: linear-gradient(90deg, rgba(247, 91, 112, 0.9), rgba(242, 87, 131, 0.9));
+  color: #fff;
+  font-size: 0.73rem;
+  padding: 0.24rem 0.62rem;
+  border-radius: 999px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.app-top h1 {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(2rem, 8vw, 2.6rem);
+  letter-spacing: 0.02em;
+  background: linear-gradient(90deg, #f84d7d, #f26e67 42%, #ff8e55 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.top-sub {
+  margin: 0.15rem 0 0;
+  color: var(--muted);
+  font-size: 0.94rem;
+}
+
+.deck-wrap {
+  flex: 1;
+  min-height: 0;
+  padding: 0.65rem 1rem 0;
+  position: relative;
+}
+
+.card-stack {
+  position: relative;
+  height: 100%;
+}
+
+.profile-card {
+  position: absolute;
+  inset: 0;
+  border-radius: 1.55rem;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 18%),
+    #1c1e2a;
+  box-shadow: 0 18px 35px rgba(37, 19, 33, 0.23);
+  touch-action: none;
+  user-select: none;
+  transform-origin: 50% 85%;
+  will-change: transform, opacity;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.profile-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.profile-card img.fallback {
+  object-fit: contain;
+  padding: 1.4rem;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(248, 158, 94, 0.65), transparent 40%),
+    radial-gradient(circle at 80% 75%, rgba(237, 81, 126, 0.62), transparent 45%),
+    #2a1f2d;
+}
+
+.card-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(16, 15, 20, 0.9));
+}
+
+.card-info {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  color: #fff;
+}
+
+.name-row {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(1.5rem, 6vw, 2rem);
+  line-height: 1.12;
+}
+
+.name-row span {
+  font-weight: 600;
+  margin-left: 0.35rem;
+  opacity: 0.92;
+}
+
+.meta-row {
+  margin: 0.26rem 0 0;
+  font-size: 0.95rem;
+  opacity: 0.93;
+}
+
+.bio {
+  margin: 0.45rem 0 0;
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 0.32rem 0.62rem;
+  font-size: 0.84rem;
+}
+
+.badge {
+  position: absolute;
+  top: 1.2rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.35rem;
+  border: 4px solid currentColor;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.45rem;
+  transform: rotate(-14deg);
+  opacity: 0;
+}
+
+.badge.nope {
+  left: 1rem;
+  color: var(--nope);
+}
+
+.badge.like {
+  right: 1rem;
+  color: var(--like);
+  transform: rotate(14deg);
+}
+
+.profile-card.is-top {
+  cursor: grab;
+}
+
+.profile-card.is-top:active {
+  cursor: grabbing;
+}
+
+.profile-card.swipe-left {
+  transform: translate(-180%, 20%) rotate(-26deg) !important;
+  opacity: 0;
+}
+
+.profile-card.swipe-right {
+  transform: translate(180%, 20%) rotate(26deg) !important;
+  opacity: 0;
+}
+
+.toast {
+  min-height: 1.9rem;
+  margin: 0.45rem 1rem 0.15rem;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 16px rgba(26, 16, 22, 0.08);
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transform: scale(0.95);
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.toast.left {
+  color: #ca4156;
+}
+
+.toast.right {
+  color: #1f9364;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0.55rem 1rem 1rem;
+}
+
+.action-btn {
+  border: none;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  box-shadow: 0 12px 26px rgba(28, 15, 20, 0.14);
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+
+.action-btn:hover,
+.action-btn:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(28, 15, 20, 0.2);
+}
+
+.action-btn.nope {
+  background: #fff;
+  border: 2px solid rgba(253, 95, 114, 0.45);
+  color: var(--nope);
+}
+
+.action-btn.like {
+  background: linear-gradient(140deg, #fe4f7a, #ff7864 54%, #ff9a57);
+  color: #fff;
+  width: 94px;
+}
+
+.final-panel {
+  margin: 1rem;
+  padding: 1.5rem 1rem;
+  border: 1px solid rgba(253, 99, 117, 0.3);
+  border-radius: 1.35rem;
+  text-align: center;
+  background:
+    radial-gradient(circle at 15% 10%, rgba(255, 203, 179, 0.5), transparent 40%),
+    linear-gradient(170deg, rgba(255, 138, 119, 0.28), rgba(255, 255, 255, 0.96));
+  animation: reveal 0.33s ease both;
+}
+
+.final-label {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 0.73rem;
+  letter-spacing: 0.09em;
+  color: #7c4553;
+}
+
+.final-panel h2 {
+  margin: 0.55rem 0 1.1rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(1.7rem, 8vw, 2.6rem);
+  line-height: 1.15;
+}
+
+.yes-btn {
+  border: none;
+  width: min(290px, 86%);
+  min-height: 88px;
+  border-radius: 999px;
+  background: linear-gradient(130deg, #ff4d7b, #ff7a61 52%, #ff9d5b);
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(1.4rem, 6vw, 1.95rem);
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  box-shadow: 0 20px 32px rgba(233, 89, 117, 0.38);
+}
+
+.yes-btn:hover,
+.yes-btn:focus-visible {
+  transform: translateY(-2px);
+}
+
+.audio-toggle {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+  background: rgba(20, 17, 24, 0.74);
+  color: #fff;
+  font-family: "Nunito", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.55rem 0.8rem;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  z-index: 5;
+}
+
+.audio-toggle.enabled {
+  background: rgba(20, 17, 24, 0.55);
+  color: #f2f4f8;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.confetti-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 480px) {
+  .app-shell {
+    border-radius: 1.4rem;
+  }
+
+  .action-btn {
+    width: 66px;
+    height: 66px;
+  }
+
+  .action-btn.like {
+    width: 88px;
+  }
+}

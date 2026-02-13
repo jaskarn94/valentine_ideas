@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tender | Rigged Match</title>
+    <link rel="stylesheet" href="./assets/tinder-parody.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="app-top">
+        <p class="top-pill">Parody Mode</p>
+        <h1>Tender</h1>
+        <p class="top-sub">the app that only finds one person</p>
+      </header>
+
+      <section class="deck-wrap" id="deckWrap">
+        <div class="card-stack" id="cardStack" aria-live="polite"></div>
+      </section>
+
+      <p class="toast" id="toast" role="status" aria-live="assertive"></p>
+
+      <section class="actions" id="actions">
+        <button class="action-btn nope" id="leftBtn" type="button" aria-label="Swipe left">
+          X
+        </button>
+        <button class="action-btn like" id="rightBtn" type="button" aria-label="Swipe right">
+          HEART
+        </button>
+      </section>
+
+      <section class="final-panel hidden" id="finalPanel">
+        <p class="final-label">Match protocol complete</p>
+        <h2>will you be valentine?</h2>
+        <button class="yes-btn" id="yesBtn" type="button">YES</button>
+      </section>
+    </main>
+
+    <button class="audio-toggle" id="audioToggle" type="button">Enable Sound</button>
+    <canvas class="confetti-canvas" id="confettiCanvas" aria-hidden="true"></canvas>
+
+    <audio id="ambientAudio" loop preload="auto" src="./assets/audio/ambient.mp3"></audio>
+    <audio id="leftAudio" preload="auto" src="./assets/audio/swipe-left.mp3"></audio>
+    <audio id="rightAudio" preload="auto" src="./assets/audio/swipe-right.mp3"></audio>
+    <audio id="matchAudio" preload="auto" src="./assets/audio/match.mp3"></audio>
+
+    <script src="./assets/tinder-parody.js"></script>
+  </body>
+</html>
