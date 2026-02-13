@@ -403,11 +403,23 @@ function playAudio(audioEl) {
 }
 
 function setupConfetti() {
+  if (!refs.confettiCanvas) {
+    return;
+  }
+
   confetti.ctx = refs.confettiCanvas.getContext("2d");
+  if (!confetti.ctx) {
+    return;
+  }
+
   resizeConfettiCanvas();
 }
 
 function resizeConfettiCanvas() {
+  if (!refs.confettiCanvas || !confetti.ctx) {
+    return;
+  }
+
   confetti.dpr = window.devicePixelRatio || 1;
   confetti.width = window.innerWidth;
   confetti.height = window.innerHeight;
@@ -419,6 +431,10 @@ function resizeConfettiCanvas() {
 }
 
 function launchConfetti() {
+  if (!confetti.ctx) {
+    return;
+  }
+
   const palette = ["#ff5d7f", "#ff8c5d", "#ffd266", "#48d597", "#4fa8ff", "#ffffff"];
   confetti.particles = [];
   confetti.endAt = performance.now() + 2100;
@@ -470,4 +486,10 @@ function launchConfetti() {
   confetti.raf = requestAnimationFrame(tick);
 }
 
-init();
+try {
+  init();
+} catch (_error) {
+  // If optional visual features fail on a browser, still render swipe cards.
+  renderDeck();
+  showToast("Swipe any direction. It is always a match.", "right");
+}

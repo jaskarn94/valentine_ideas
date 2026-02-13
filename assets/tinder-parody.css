@@ -39,7 +39,7 @@ body {
 
 .app-shell {
   width: min(430px, 96vw);
-  min-height: min(810px, 95dvh);
+  height: min(810px, 95dvh);
   border-radius: 2rem;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), #fff);
   box-shadow: var(--shadow);
@@ -86,7 +86,7 @@ body {
 
 .deck-wrap {
   flex: 1;
-  min-height: 0;
+  min-height: 440px;
   padding: 0.65rem 1rem 0;
   position: relative;
 }
@@ -94,6 +94,7 @@ body {
 .card-stack {
   position: relative;
   height: 100%;
+  min-height: 100%;
 }
 
 .profile-card {
